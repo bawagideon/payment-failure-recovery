@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment Failure & 3D Secure Recovery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root { --bg: #090d16; --card: #131b2e; --accent: #3b82f6; --accent-glow: rgba(59, 130, 246, 0.25); --success: #10b981; --danger: #ef4444; --text: #f1f5f9; --text-dim: #94a3b8; --border: #1e293b; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace; }
+    body { background: var(--bg); color: var(--text); padding: 24px; min-height: 100vh; }
+    .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 16px; margin-bottom: 24px; }
+    .title { font-size: 20px; font-weight: 700; color: #fff; }
+    .badge { background: var(--accent-glow); color: var(--accent); padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; border: 1px solid var(--accent); }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin-bottom: 16px; }
+    button { background: var(--accent); color: #fff; border: none; padding: 8px 14px; border-radius: 6px; font-weight: 600; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="title">💳 Payment Failure & 3D Secure Recovery</div>
+    <span class="badge">Live Stripe Interceptor</span>
+  </div>
+
+  <div class="card">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div>
+        <div style="font-weight: 700; font-size: 15px;">Order #ORD-8419 ($540.00 USD)</div>
+        <div style="color: #ef4444; font-size: 13px; margin-top: 4px;">Decline Code: <strong>3ds_authentication_timeout</strong></div>
+      </div>
+      <button onclick="rescue()">Auto-Dispatch Backup SMS</button>
+    </div>
+    <div id="statusMsg" style="margin-top: 12px; font-size: 13px; color: var(--text-dim);">
+      Status: Ready for instantaneous automated customer recovery.
+    </div>
+  </div>
+
+  <script>
+    function rescue() {
+      document.getElementById('statusMsg').innerHTML = '<span style="color: var(--success); font-weight: 700;">✅ Short-lived secure checkout token generated and sent to +1 (415) 555-0192 via SMS!</span>';
+    }
+  </script>
+</body>
+</html>
